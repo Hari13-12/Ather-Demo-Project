@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>68.0</apiVersion>
+    <assignments>
+        <name>Set_High_Priority</name>
+        <label>Set High Priority</label>
+        <locationX>176</locationX>
+        <locationY>480</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Lead_Priority__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>High</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Normal_Priority</name>
+        <label>Set Normal Priority</label>
+        <locationX>452</locationX>
+        <locationY>480</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Lead_Priority__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Normal</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Is_Priority_Source</name>
+        <label>Is Priority Source</label>
+        <locationX>314</locationX>
+        <locationY>372</locationY>
+        <defaultConnector>
+            <targetReference>Set_Normal_Priority</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>All Other Sources</defaultConnectorLabel>
+        <rules>
+            <name>Priority_Source</name>
+            <conditionLogic>1 OR 2 OR 3</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.LeadSource</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Web</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.LeadSource</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Trade Show</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.LeadSource</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Partner Referral</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_High_Priority</targetReference>
+            </connector>
+            <label>Priority Source</label>
+        </rules>
+    </decisions>
+    <description>Sets Lead Priority from exact Lead Source values before the Lead is saved.</description>
+    <interviewLabel>Lead - Set Priority from Lead Source {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Lead - Set Priority from Lead Source</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <connector>
+            <targetReference>Is_Priority_Source</targetReference>
+        </connector>
+        <filterFormula>OR(ISNEW(), ISCHANGED({!$Record.LeadSource}))</filterFormula>
+        <object>Lead</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Draft</status>
+</Flow>
