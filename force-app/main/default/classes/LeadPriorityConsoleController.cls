@@ -64,8 +64,12 @@ public with sharing class LeadPriorityConsoleController {
     @AuraEnabled
     public Datetime createdDate;
 
-    /** Converts a queried Lead to its client-safe shape. */
-    public LeadRow(Lead lead, Boolean includeOwnerName) {
+    /**
+     * Converts a queried Lead to its client-safe shape.
+     * @param lead The queried Lead.
+     * @param accessibleOwnerName The Owner name when it is FLS-accessible.
+     */
+    public LeadRow(Lead lead, String accessibleOwnerName) {
       id = lead.Id;
       name = lead.Name;
       company = lead.Company;
@@ -73,9 +77,7 @@ public with sharing class LeadPriorityConsoleController {
       priority = (String) lead.get(PRIORITY_FIELD);
       status = lead.Status;
       ownerId = lead.OwnerId;
-      ownerName = includeOwnerName && lead.Owner != null
-        ? lead.Owner.Name
-        : null;
+      ownerName = accessibleOwnerName;
       createdDate = lead.CreatedDate;
     }
   }
@@ -146,7 +148,17 @@ public with sharing class LeadPriorityConsoleController {
       if (statusFilter != null) {
         leadFilters.add('Status = :statusFilter');
       }
-      List<Lead> highPriorityLeads = Database.query(
+      Map<String, Object> queryBinds = new Map<String, Object>();
+      if (searchPattern != null) {
+        queryBinds.put('searchPattern', searchPattern);
+      }
+      if (sourceFilter != null) {
+        queryBinds.put('sourceFilter', sourceFilter);
+      }
+      if (statusFilter != null) {
+        queryBinds.put('statusFilter', statusFilter);
+      }
+      List<Lead> highPriorityLeads = Database.queryWithBinds(
         'SELECT Id, Name, Company, LeadSource, ' +
           PRIORITY_FIELD +
           ', Status, OwnerId' +
@@ -154,10 +166,17 @@ public with sharing class LeadPriorityConsoleController {
           ', CreatedDate FROM Lead WHERE ' +
           String.join(leadFilters, ' AND ') +
           ' ORDER BY CreatedDate DESC LIMIT ' +
-          MAX_HIGH_PRIORITY_LEADS
+          MAX_HIGH_PRIORITY_LEADS,
+        queryBinds,
+        AccessLevel.USER_MODE
       );
       for (Lead lead : highPriorityLeads) {
-        result.highPriorityLeads.add(new LeadRow(lead, includeOwnerName));
+        result.highPriorityLeads.add(
+          new LeadRow(
+            lead,
+            includeOwnerName && lead.Owner != null ? lead.Owner.Name : null
+          )
+        );
       }
     } catch (Exception caughtException) {
       result.dependencyAvailable = false;

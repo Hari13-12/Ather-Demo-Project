@@ -1,5 +1,4 @@
 import { createElement } from "lwc";
-import { NavigationMixin } from "lightning/navigation";
 import { refreshApex } from "@salesforce/apex";
 import { registerApexTestWireAdapter } from "@salesforce/sfdx-lwc-jest";
 import LeadPriorityConsole from "c/leadPriorityConsole";
@@ -8,6 +7,23 @@ import getConsoleData from "@salesforce/apex/LeadPriorityConsoleController.getCo
 jest.mock(
   "@salesforce/apex",
   () => ({ refreshApex: jest.fn(() => Promise.resolve()) }),
+  { virtual: true }
+);
+
+const NAVIGATE = Symbol("Navigate");
+const navigate = jest.fn();
+jest.mock(
+  "lightning/navigation",
+  () => {
+    const NavigationMixin = (Base) =>
+      class extends Base {
+        [NAVIGATE](pageReference) {
+          navigate(pageReference);
+        }
+      };
+    NavigationMixin.Navigate = NAVIGATE;
+    return { NavigationMixin };
+  },
   { virtual: true }
 );
 
@@ -95,8 +111,6 @@ describe("c-lead-priority-console", () => {
 
   it("selects a table row and navigates with the NavigationMixin", async () => {
     const element = createComponent();
-    const navigate = jest.fn();
-    element[NavigationMixin.Navigate] = navigate;
     await flushPromises();
 
     const rows = element.shadowRoot.querySelectorAll("tbody tr");
