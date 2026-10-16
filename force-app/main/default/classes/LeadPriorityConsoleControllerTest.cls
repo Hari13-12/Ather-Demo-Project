@@ -7,7 +7,7 @@ private class LeadPriorityConsoleControllerTest {
       leads.add(
         new Lead(
           LastName = 'Priority ' + indexValue,
-          Company = indexValue == 0 ? null : 'Company ' + indexValue,
+          Company = 'Company ' + indexValue,
           LeadSource = Math.mod(indexValue, 2) == 0 ? 'Web' : null,
           Status = Math.mod(indexValue, 3) == 0 ? 'Working' : 'New'
         )
