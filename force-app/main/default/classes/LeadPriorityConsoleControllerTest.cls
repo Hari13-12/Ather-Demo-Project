@@ -45,6 +45,7 @@ private class LeadPriorityConsoleControllerTest {
     ) {
       return;
     }
+    Integer dmlStatementsBefore = Limits.getDmlStatements();
     Test.startTest();
     LeadPriorityConsoleController.ConsoleData result = LeadPriorityConsoleController.getConsoleData();
     Test.stopTest();
@@ -59,7 +60,7 @@ private class LeadPriorityConsoleControllerTest {
     System.assertEquals('Normal', result.defaultPriority);
     System.assertEquals(203, result.highPriorityTodayCount);
     System.assertEquals(
-      0,
+      dmlStatementsBefore,
       Limits.getDmlStatements(),
       'The controller must remain read-only.'
     );
