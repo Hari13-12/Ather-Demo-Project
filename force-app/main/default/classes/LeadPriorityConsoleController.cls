@@ -30,6 +30,8 @@ public with sharing class LeadPriorityConsoleController {
     public String leadSource;
     @AuraEnabled
     public String priority;
+    @AuraEnabled
+    public String mappingKey;
 
     /** Creates a display-safe mapping. */
     public RuleMapping(String leadSource, String priority) {
@@ -37,6 +39,7 @@ public with sharing class LeadPriorityConsoleController {
         ? 'Other / Blank'
         : leadSource;
       this.priority = priority;
+      this.mappingKey = this.leadSource + '-' + priority;
     }
   }
 
@@ -62,7 +65,7 @@ public with sharing class LeadPriorityConsoleController {
     public Datetime createdDate;
 
     /** Converts a queried Lead to its client-safe shape. */
-    public LeadRow(Lead lead) {
+    public LeadRow(Lead lead, Boolean includeOwnerName) {
       id = lead.Id;
       name = lead.Name;
       company = lead.Company;
@@ -70,14 +73,20 @@ public with sharing class LeadPriorityConsoleController {
       priority = (String) lead.get(PRIORITY_FIELD);
       status = lead.Status;
       ownerId = lead.OwnerId;
-      ownerName = lead.Owner == null ? null : lead.Owner.Name;
+      ownerName = includeOwnerName && lead.Owner != null
+        ? lead.Owner.Name
+        : null;
       createdDate = lead.CreatedDate;
     }
   }
 
   /** Returns console data without modifying Salesforce records. */
   @AuraEnabled(cacheable=true)
-  public static ConsoleData getConsoleData() {
+  public static ConsoleData getConsoleData(
+    String searchTerm,
+    String leadSource,
+    String status
+  ) {
     ConsoleData result = new ConsoleData();
     result.dependencyAvailable = hasRequiredAccess();
     result.defaultPriority = 'Normal';
@@ -117,16 +126,38 @@ public with sharing class LeadPriorityConsoleController {
       );
       result.highPriorityTodayCount = (Integer) todayCounts[0].get('total');
 
+      Boolean includeOwnerName = canReadOwnerName();
+      String ownerNameField = includeOwnerName ? ', Owner.Name' : '';
+      List<String> leadFilters = new List<String>{
+        PRIORITY_FIELD + ' = \'High\''
+      };
+      String searchPattern;
+      if (!String.isBlank(searchTerm)) {
+        searchPattern = '%' + searchTerm.trim() + '%';
+        leadFilters.add(
+          '(Name LIKE :searchPattern OR Company LIKE :searchPattern)'
+        );
+      }
+      String sourceFilter = String.isBlank(leadSource) ? null : leadSource;
+      if (sourceFilter != null) {
+        leadFilters.add('LeadSource = :sourceFilter');
+      }
+      String statusFilter = String.isBlank(status) ? null : status;
+      if (statusFilter != null) {
+        leadFilters.add('Status = :statusFilter');
+      }
       List<Lead> highPriorityLeads = Database.query(
         'SELECT Id, Name, Company, LeadSource, ' +
           PRIORITY_FIELD +
-          ', Status, OwnerId, Owner.Name, CreatedDate FROM Lead WHERE ' +
-          PRIORITY_FIELD +
-          ' = \'High\' ORDER BY CreatedDate DESC LIMIT ' +
+          ', Status, OwnerId' +
+          ownerNameField +
+          ', CreatedDate FROM Lead WHERE ' +
+          String.join(leadFilters, ' AND ') +
+          ' ORDER BY CreatedDate DESC LIMIT ' +
           MAX_HIGH_PRIORITY_LEADS
       );
       for (Lead lead : highPriorityLeads) {
-        result.highPriorityLeads.add(new LeadRow(lead));
+        result.highPriorityLeads.add(new LeadRow(lead, includeOwnerName));
       }
     } catch (Exception caughtException) {
       result.dependencyAvailable = false;
@@ -174,5 +205,13 @@ public with sharing class LeadPriorityConsoleController {
       }
     }
     return true;
+  }
+
+  private static Boolean canReadOwnerName() {
+    Schema.DescribeSObjectResult userDescribe = User.SObjectType.getDescribe(
+      SObjectDescribeOptions.DEFERRED
+    );
+    return userDescribe.isAccessible() &&
+      Schema.SObjectType.User.fields.Name.getDescribe().isAccessible();
   }
 }

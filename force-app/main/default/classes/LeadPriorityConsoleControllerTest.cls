@@ -29,7 +29,11 @@ private class LeadPriorityConsoleControllerTest {
   static void returnsDependencyErrorWhenPriorityFieldIsUnavailable() {
     LeadPriorityConsoleController.forceDependencyUnavailable = true;
     Test.startTest();
-    LeadPriorityConsoleController.ConsoleData result = LeadPriorityConsoleController.getConsoleData();
+    LeadPriorityConsoleController.ConsoleData result = LeadPriorityConsoleController.getConsoleData(
+      null,
+      null,
+      null
+    );
     Test.stopTest();
 
     System.assertEquals(false, result.dependencyAvailable);
@@ -47,7 +51,11 @@ private class LeadPriorityConsoleControllerTest {
     }
     Integer dmlStatementsBefore = Limits.getDmlStatements();
     Test.startTest();
-    LeadPriorityConsoleController.ConsoleData result = LeadPriorityConsoleController.getConsoleData();
+    LeadPriorityConsoleController.ConsoleData result = LeadPriorityConsoleController.getConsoleData(
+      null,
+      null,
+      null
+    );
     Test.stopTest();
 
     System.assertEquals(true, result.dependencyAvailable);
@@ -64,5 +72,30 @@ private class LeadPriorityConsoleControllerTest {
       Limits.getDmlStatements(),
       'The controller must remain read-only.'
     );
+  }
+
+  @IsTest
+  static void appliesFiltersBeforeTheRecordLimit() {
+    if (
+      !Schema.SObjectType.Lead.fields.getMap().containsKey('Lead_Priority__c')
+    ) {
+      return;
+    }
+
+    Test.startTest();
+    LeadPriorityConsoleController.ConsoleData result = LeadPriorityConsoleController.getConsoleData(
+      'Priority 3',
+      null,
+      'Working'
+    );
+    Test.stopTest();
+
+    System.assertEquals(5, result.highPriorityLeads.size());
+    for (
+      LeadPriorityConsoleController.LeadRow lead : result.highPriorityLeads
+    ) {
+      System.assert(lead.name.contains('Priority 3'));
+      System.assertEquals('Working', lead.status);
+    }
   }
 }

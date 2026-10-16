@@ -16,8 +16,15 @@ export default class LeadPriorityConsole extends NavigationMixin(
   selectedStatus = ALL_VALUE;
   selectedLeadId;
   wiredResult;
+  serverSearchTerm;
+  serverSelectedSource;
+  serverSelectedStatus;
 
-  @wire(getConsoleData)
+  @wire(getConsoleData, {
+    searchTerm: "$serverSearchTerm",
+    leadSource: "$serverSelectedSource",
+    status: "$serverSelectedStatus"
+  })
   wiredConsoleData(result) {
     this.wiredResult = result;
     const { data, error } = result;
@@ -53,19 +60,21 @@ export default class LeadPriorityConsole extends NavigationMixin(
 
   get filteredLeads() {
     const search = this.searchTerm.trim().toLowerCase();
-    return this.highPriorityLeads.filter((lead) => {
-      const matchesSearch =
-        !search ||
-        (lead.name || "").toLowerCase().includes(search) ||
-        (lead.company || "").toLowerCase().includes(search);
-      const matchesSource =
-        this.selectedSource === ALL_VALUE ||
-        (lead.leadSource || "") === this.selectedSource;
-      const matchesStatus =
-        this.selectedStatus === ALL_VALUE ||
-        lead.status === this.selectedStatus;
-      return matchesSearch && matchesSource && matchesStatus;
-    });
+    return this.highPriorityLeads
+      .filter((lead) => {
+        const matchesSearch =
+          !search ||
+          (lead.name || "").toLowerCase().includes(search) ||
+          (lead.company || "").toLowerCase().includes(search);
+        const matchesSource =
+          this.selectedSource === ALL_VALUE ||
+          (lead.leadSource || "") === this.selectedSource;
+        const matchesStatus =
+          this.selectedStatus === ALL_VALUE ||
+          lead.status === this.selectedStatus;
+        return matchesSearch && matchesSource && matchesStatus;
+      })
+      .map((lead) => this.withDisplayValues(lead));
   }
 
   get sourceOptions() {
@@ -83,9 +92,10 @@ export default class LeadPriorityConsole extends NavigationMixin(
   }
 
   get selectedLead() {
-    return this.highPriorityLeads.find(
-      (lead) => lead.id === this.selectedLeadId
+    const lead = this.highPriorityLeads.find(
+      (item) => item.id === this.selectedLeadId
     );
+    return lead ? this.withDisplayValues(lead) : undefined;
   }
 
   get hasLeads() {
@@ -106,14 +116,19 @@ export default class LeadPriorityConsole extends NavigationMixin(
 
   handleSearch(event) {
     this.searchTerm = event.target.value;
+    this.serverSearchTerm = this.searchTerm || undefined;
   }
 
   handleSourceChange(event) {
     this.selectedSource = event.detail.value;
+    this.serverSelectedSource =
+      this.selectedSource === ALL_VALUE ? undefined : this.selectedSource;
   }
 
   handleStatusChange(event) {
     this.selectedStatus = event.detail.value;
+    this.serverSelectedStatus =
+      this.selectedStatus === ALL_VALUE ? undefined : this.selectedStatus;
   }
 
   handleRowSelect(event) {
@@ -148,5 +163,13 @@ export default class LeadPriorityConsole extends NavigationMixin(
         "Unable to load Lead Priority data. Please refresh and try again.";
       this.isRefreshing = false;
     }
+  }
+
+  withDisplayValues(lead) {
+    return {
+      ...lead,
+      displayCompany: lead.company || "—",
+      displayLeadSource: lead.leadSource || "Other / Blank"
+    };
   }
 }

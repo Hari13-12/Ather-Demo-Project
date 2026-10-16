@@ -80,7 +80,7 @@
                   </thead>
                   <tbody>
                     <template for:each={data.ruleMappings} for:item="mapping"
-                      ><tr key={mapping.leadSource}>
+                      ><tr key={mapping.mappingKey}>
                         <td>{mapping.leadSource}</td>
                         <td>
                           <lightning-badge
@@ -100,9 +100,9 @@
                     <dt>Lead Name</dt>
                     <dd>{selectedLead.name}</dd>
                     <dt>Company</dt>
-                    <dd>{selectedLead.company}</dd>
+                    <dd>{selectedLead.displayCompany}</dd>
                     <dt>Lead Source</dt>
-                    <dd>{selectedLead.leadSource}</dd>
+                    <dd>{selectedLead.displayLeadSource}</dd>
                     <dt>Lead Priority</dt>
                     <dd>
                       <lightning-badge
@@ -182,8 +182,8 @@
                             {lead.name}
                           </button>
                         </td>
-                        <td>{lead.company}</td>
-                        <td>{lead.leadSource}</td>
+                        <td>{lead.displayCompany}</td>
+                        <td>{lead.displayLeadSource}</td>
                         <td>
                           <lightning-badge
                             label={lead.priority}
