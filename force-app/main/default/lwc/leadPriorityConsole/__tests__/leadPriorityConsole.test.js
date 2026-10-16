@@ -10,18 +10,18 @@ jest.mock(
   { virtual: true }
 );
 
-const NAVIGATE = Symbol("Navigate");
-const navigate = jest.fn();
+const mockNavigateSymbol = Symbol("Navigate");
+const mockNavigate = jest.fn();
 jest.mock(
   "lightning/navigation",
   () => {
     const NavigationMixin = (Base) =>
       class extends Base {
-        [NAVIGATE](pageReference) {
-          navigate(pageReference);
+        [mockNavigateSymbol](pageReference) {
+          mockNavigate(pageReference);
         }
       };
-    NavigationMixin.Navigate = NAVIGATE;
+    NavigationMixin.Navigate = mockNavigateSymbol;
     return { NavigationMixin };
   },
   { virtual: true }
@@ -119,7 +119,7 @@ describe("c-lead-priority-console", () => {
     expect(element.shadowRoot.textContent).toContain("Blank Source");
 
     element.shadowRoot.querySelector(".link-button").click();
-    expect(navigate).toHaveBeenCalledWith({
+    expect(mockNavigate).toHaveBeenCalledWith({
       type: "standard__recordPage",
       attributes: {
         recordId: "00Q000000000001AAA",
