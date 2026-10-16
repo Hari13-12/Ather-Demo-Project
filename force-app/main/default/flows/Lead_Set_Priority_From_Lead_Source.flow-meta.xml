@@ -67,7 +67,7 @@
         </rules>
     </decisions>
     <description
-  >Sets Lead Priority from exact Lead Source values before the Lead is saved. Kept inactive until Trade Show is available.</description>
+  >Sets Lead Priority from exact Lead Source values before the Lead is saved.</description>
     <interviewLabel
   >Lead - Set Priority from Lead Source {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Lead - Set Priority from Lead Source</label>
@@ -96,5 +96,5 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
 </Flow>
