@@ -143,7 +143,7 @@ export default class LeadPriorityConsole extends NavigationMixin(
     this.isRefreshing = true;
     try {
       await refreshApex(this.wiredResult);
-    } catch (error) {
+    } catch {
       this.errorMessage =
         "Unable to load Lead Priority data. Please refresh and try again.";
       this.isRefreshing = false;

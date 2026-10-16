@@ -1,3 +1,4 @@
+/** Provides read-only, dependency-aware data for Lead Priority Console. */
 public with sharing class LeadPriorityConsoleController {
   private static final String PRIORITY_FIELD = 'Lead_Priority__c';
   private static final Integer MAX_HIGH_PRIORITY_LEADS = 200;
@@ -5,6 +6,7 @@ public with sharing class LeadPriorityConsoleController {
   @TestVisible
   private static Boolean forceDependencyUnavailable = false;
 
+  /** Response contract for the console. */
   public class ConsoleData {
     @AuraEnabled
     public Boolean dependencyAvailable;
@@ -22,12 +24,14 @@ public with sharing class LeadPriorityConsoleController {
     public List<LeadRow> highPriorityLeads;
   }
 
+  /** A distinct Lead Source and priority pair. */
   public class RuleMapping {
     @AuraEnabled
     public String leadSource;
     @AuraEnabled
     public String priority;
 
+    /** Creates a display-safe mapping. */
     public RuleMapping(String leadSource, String priority) {
       this.leadSource = String.isBlank(leadSource)
         ? 'Other / Blank'
@@ -36,6 +40,7 @@ public with sharing class LeadPriorityConsoleController {
     }
   }
 
+  /** Read-only Lead table and preview row. */
   public class LeadRow {
     @AuraEnabled
     public Id id;
@@ -56,6 +61,7 @@ public with sharing class LeadPriorityConsoleController {
     @AuraEnabled
     public Datetime createdDate;
 
+    /** Converts a queried Lead to its client-safe shape. */
     public LeadRow(Lead lead) {
       id = lead.Id;
       name = lead.Name;
@@ -69,6 +75,7 @@ public with sharing class LeadPriorityConsoleController {
     }
   }
 
+  /** Returns console data without modifying Salesforce records. */
   @AuraEnabled(cacheable=true)
   public static ConsoleData getConsoleData() {
     ConsoleData result = new ConsoleData();
@@ -121,7 +128,7 @@ public with sharing class LeadPriorityConsoleController {
       for (Lead lead : highPriorityLeads) {
         result.highPriorityLeads.add(new LeadRow(lead));
       }
-        } catch (Exception caughtException) {
+    } catch (Exception caughtException) {
       result.dependencyAvailable = false;
       result.errorMessage = 'Lead Priority data is unavailable. Please verify your access and the Lead Priority deployment.';
       result.ruleMappings.clear();
@@ -136,7 +143,9 @@ public with sharing class LeadPriorityConsoleController {
     if (Test.isRunningTest() && forceDependencyUnavailable) {
       return false;
     }
-    Schema.DescribeSObjectResult leadDescribe = Lead.SObjectType.getDescribe();
+    Schema.DescribeSObjectResult leadDescribe = Lead.SObjectType.getDescribe(
+      SObjectDescribeOptions.DEFERRED
+    );
     if (
       !leadDescribe.isAccessible() ||
       !leadDescribe.fields.getMap().containsKey(PRIORITY_FIELD)

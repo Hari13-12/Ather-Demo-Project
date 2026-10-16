@@ -1,22 +1,22 @@
 .metric,
 .panel {
-  border: 1px solid var(--lwc-colorBorder, #dddbda);
-  border-radius: 0.25rem;
-  padding: 1rem;
-  height: 100%;
+  border: var(--slds-g-sizing-border-1) solid
+    var(--slds-g-color-neutral-base-90, var(--lwc-colorBorder));
+  border-radius: var(--slds-g-radius-border-1);
+  padding: var(--slds-g-spacing-4);
 }
 
 .metric p,
 .panel h2 {
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--slds-g-spacing-2);
 }
 .metric strong {
-  font-size: 2rem;
+  font-size: var(--slds-g-font-scale-6);
 }
 dt {
-  color: var(--lwc-colorTextLabel, #444);
-  font-size: 0.75rem;
-  margin-top: 0.5rem;
+  color: var(--slds-g-color-info-1, var(--lwc-colorTextLabel));
+  font-size: var(--slds-g-font-scale-neg-1);
+  margin-top: var(--slds-g-spacing-2);
 }
 dd {
   margin-left: 0;
@@ -24,7 +24,7 @@ dd {
 .link-button {
   background: none;
   border: 0;
-  color: var(--lwc-brandTextLink, #0176d3);
+  color: var(--slds-s-link-color, var(--lwc-brandTextLink));
   cursor: pointer;
   padding: 0;
   text-decoration: underline;
