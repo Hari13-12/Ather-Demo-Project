@@ -231,6 +231,6 @@ public with sharing class LeadPriorityConsoleController {
       SObjectDescribeOptions.DEFERRED
     );
     return userDescribe.isAccessible() &&
-      Schema.SObjectType.User.fields.Name.getDescribe().isAccessible();
+      Schema.SObjectType.User.fields.Name.isAccessible();
   }
 }
