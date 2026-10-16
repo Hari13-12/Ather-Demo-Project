@@ -85,13 +85,13 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <start>
+        <locationX>314</locationX>
+        <locationY>264</locationY>
         <connector>
             <targetReference>Is_Priority_Source</targetReference>
         </connector>
         <filterFormula
     >OR(ISNEW(), ISCHANGED({!$Record.LeadSource}))</filterFormula>
-        <locationX>314</locationX>
-        <locationY>264</locationY>
         <object>Lead</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
