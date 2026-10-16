@@ -1,4 +1,5 @@
 import { createElement } from "lwc";
+import { mockNavigate } from "lightning/navigation";
 import { refreshApex } from "@salesforce/apex";
 import { registerApexTestWireAdapter } from "@salesforce/sfdx-lwc-jest";
 import LeadPriorityConsole from "c/leadPriorityConsole";
@@ -10,19 +11,19 @@ jest.mock(
   { virtual: true }
 );
 
-const mockNavigateSymbol = Symbol("Navigate");
-const mockNavigate = jest.fn();
 jest.mock(
   "lightning/navigation",
   () => {
+    const navigateSymbol = Symbol("Navigate");
+    const navigateSpy = jest.fn();
     const NavigationMixin = (Base) =>
       class extends Base {
-        [mockNavigateSymbol](pageReference) {
-          mockNavigate(pageReference);
+        [navigateSymbol](pageReference) {
+          navigateSpy(pageReference);
         }
       };
-    NavigationMixin.Navigate = mockNavigateSymbol;
-    return { NavigationMixin };
+    NavigationMixin.Navigate = navigateSymbol;
+    return { NavigationMixin, mockNavigate: navigateSpy };
   },
   { virtual: true }
 );
