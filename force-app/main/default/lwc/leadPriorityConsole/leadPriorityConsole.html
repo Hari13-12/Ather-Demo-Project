@@ -1,0 +1,43 @@
+<template>
+    <lightning-card>
+        <div class="slds-p-around_medium">
+            <div class="slds-grid slds-wrap slds-grid_vertical-align-center slds-m-bottom_medium">
+                <lightning-icon icon-name="standard:lead" alternative-text="Lead" size="medium" class="slds-m-right_small"></lightning-icon>
+                <div class="slds-col slds-grow">
+                    <h1 class="slds-text-heading_large">Lead Priority Console</h1>
+                    <p class="slds-text-color_weak">Manage lead priority rules and review high priority leads.</p>
+                </div>
+                <lightning-button label="Refresh" icon-name="utility:refresh" onclick={handleRefresh}></lightning-button>
+            </div>
+
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading Lead Priority data" size="medium"></lightning-spinner>
+            </template>
+            <template if:true={isRefreshing}>
+                <lightning-spinner alternative-text="Refreshing Lead Priority data" size="small"></lightning-spinner>
+            </template>
+            <template if:true={errorMessage}>
+                <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">{errorMessage}</div>
+            </template>
+
+            <template if:false={hasDependencyError}>
+                <template if:true={data}>
+                    <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_medium">
+                        <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-3"><article class="metric"><p>Priority Rules</p><strong>{data.priorityRuleCount}</strong></article></div>
+                        <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-3"><article class="metric"><p>High Priority Leads Today</p><strong>{data.highPriorityTodayCount}</strong></article></div>
+                        <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-3"><article class="metric"><p>Default Priority</p><strong>{data.defaultPriority}</strong></article></div>
+                    </div>
+
+                    <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_medium">
+                        <section class="slds-col slds-size_1-of-1 slds-large-size_1-of-2"><div class="panel"><h2>Priority Rule Mapping</h2><table class="slds-table slds-table_cell-buffer"><thead><tr><th>Lead Source</th><th>Mapped Priority</th></tr></thead><tbody><template for:each={data.ruleMappings} for:item="mapping"><tr key={mapping.leadSource}><td>{mapping.leadSource}</td><td><lightning-badge label={mapping.priority}></lightning-badge></td></tr></template></tbody></table></div></section>
+                        <section class="slds-col slds-size_1-of-1 slds-large-size_1-of-2"><div class="panel"><h2>Lead Preview</h2><template if:true={selectedLead}><dl><dt>Lead Name</dt><dd>{selectedLead.name}</dd><dt>Company</dt><dd>{selectedLead.company}</dd><dt>Lead Source</dt><dd>{selectedLead.leadSource}</dd><dt>Lead Priority</dt><dd><lightning-badge label={selectedLead.priority}></lightning-badge></dd><dt>Status</dt><dd>{selectedLead.status}</dd><dt>Owner</dt><dd>{selectedLead.ownerName}</dd></dl></template><template if:false={selectedLead}><p>No High Priority Lead available for preview.</p></template></div></section>
+                    </div>
+
+                    <section class="panel"><h2>High Priority Leads</h2><div class="slds-grid slds-wrap slds-gutters slds-m-vertical_small"><div class="slds-col slds-size_1-of-1 slds-large-size_1-of-3"><lightning-input type="search" label="Search" placeholder="Search lead name or company..." onchange={handleSearch}></lightning-input></div><div class="slds-col slds-size_1-of-1 slds-large-size_1-of-3"><lightning-combobox label="Lead Source" value={selectedSource} options={sourceOptions} onchange={handleSourceChange}></lightning-combobox></div><div class="slds-col slds-size_1-of-1 slds-large-size_1-of-3"><lightning-combobox label="Status" value={selectedStatus} options={statusOptions} onchange={handleStatusChange}></lightning-combobox></div></div>
+                        <template if:true={hasFilteredLeads}><div class="slds-scrollable_x"><table class="slds-table slds-table_cell-buffer slds-table_bordered"><thead><tr><th>Lead Name</th><th>Company</th><th>Lead Source</th><th>Lead Priority</th><th>Status</th><th>Owner</th></tr></thead><tbody><template for:each={filteredLeads} for:item="lead"><tr key={lead.id} data-id={lead.id} onclick={handleRowSelect} onkeydown={handleRowKeydown} tabindex="0"><td><button class="link-button" data-id={lead.id} onclick={navigateToLead}>{lead.name}</button></td><td>{lead.company}</td><td>{lead.leadSource}</td><td><lightning-badge label={lead.priority}></lightning-badge></td><td>{lead.status}</td><td>{lead.ownerName}</td></tr></template></tbody></table></div></template><template if:false={hasFilteredLeads}><p class="slds-p-vertical_medium"><template if:true={hasLeads}>No High Priority Leads match the selected filters.</template><template if:false={hasLeads}>No High Priority Leads found.</template></p></template>
+                    </section>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,125 @@
+public with sharing class LeadPriorityConsoleController {
+    private static final String PRIORITY_FIELD = 'Lead_Priority__c';
+    private static final Integer MAX_HIGH_PRIORITY_LEADS = 200;
+
+    @TestVisible private static Boolean forceDependencyUnavailable = false;
+
+    public class ConsoleData {
+        @AuraEnabled public Boolean dependencyAvailable;
+        @AuraEnabled public String errorMessage;
+        @AuraEnabled public Integer priorityRuleCount;
+        @AuraEnabled public Integer highPriorityTodayCount;
+        @AuraEnabled public String defaultPriority;
+        @AuraEnabled public List<RuleMapping> ruleMappings;
+        @AuraEnabled public List<LeadRow> highPriorityLeads;
+    }
+
+    public class RuleMapping {
+        @AuraEnabled public String leadSource;
+        @AuraEnabled public String priority;
+
+        public RuleMapping(String leadSource, String priority) {
+            this.leadSource = String.isBlank(leadSource) ? 'Other / Blank' : leadSource;
+            this.priority = priority;
+        }
+    }
+
+    public class LeadRow {
+        @AuraEnabled public Id id;
+        @AuraEnabled public String name;
+        @AuraEnabled public String company;
+        @AuraEnabled public String leadSource;
+        @AuraEnabled public String priority;
+        @AuraEnabled public String status;
+        @AuraEnabled public Id ownerId;
+        @AuraEnabled public String ownerName;
+        @AuraEnabled public Datetime createdDate;
+
+        public LeadRow(Lead lead) {
+            id = lead.Id;
+            name = lead.Name;
+            company = lead.Company;
+            leadSource = lead.LeadSource;
+            priority = (String) lead.get(PRIORITY_FIELD);
+            status = lead.Status;
+            ownerId = lead.OwnerId;
+            ownerName = lead.Owner == null ? null : lead.Owner.Name;
+            createdDate = lead.CreatedDate;
+        }
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static ConsoleData getConsoleData() {
+        ConsoleData result = new ConsoleData();
+        result.dependencyAvailable = hasRequiredAccess();
+        result.defaultPriority = 'Normal';
+        result.ruleMappings = new List<RuleMapping>();
+        result.highPriorityLeads = new List<LeadRow>();
+        result.priorityRuleCount = 0;
+        result.highPriorityTodayCount = 0;
+
+        if (!result.dependencyAvailable) {
+            result.errorMessage = 'Lead Priority is unavailable. Deploy the Lead Priority field and activate the Lead priority flow before using this console.';
+            return result;
+        }
+
+        try {
+            List<AggregateResult> mappings = Database.query(
+                'SELECT LeadSource, ' + PRIORITY_FIELD + ' priority ' +
+                'FROM Lead GROUP BY LeadSource, ' + PRIORITY_FIELD + ' WITH USER_MODE'
+            );
+            Set<String> prioritySources = new Set<String>();
+            for (AggregateResult mapping : mappings) {
+                String source = (String) mapping.get('LeadSource');
+                String priority = (String) mapping.get('priority');
+                result.ruleMappings.add(new RuleMapping(source, priority));
+                if (priority == 'High') {
+                    prioritySources.add(String.isBlank(source) ? '' : source);
+                }
+            }
+            result.priorityRuleCount = prioritySources.size();
+
+            List<AggregateResult> todayCounts = Database.query(
+                'SELECT COUNT(Id) total FROM Lead WHERE ' + PRIORITY_FIELD +
+                " = 'High' AND CreatedDate = TODAY WITH USER_MODE"
+            );
+            result.highPriorityTodayCount = (Integer) todayCounts[0].get('total');
+
+            List<Lead> highPriorityLeads = Database.query(
+                'SELECT Id, Name, Company, LeadSource, ' + PRIORITY_FIELD +
+                ', Status, OwnerId, Owner.Name, CreatedDate FROM Lead WHERE ' +
+                PRIORITY_FIELD + " = 'High' ORDER BY CreatedDate DESC LIMIT " + MAX_HIGH_PRIORITY_LEADS +
+                ' WITH USER_MODE'
+            );
+            for (Lead lead : highPriorityLeads) {
+                result.highPriorityLeads.add(new LeadRow(lead));
+            }
+        } catch (Exception exception) {
+            result.dependencyAvailable = false;
+            result.errorMessage = 'Lead Priority data is unavailable. Please verify your access and the Lead Priority deployment.';
+            result.ruleMappings.clear();
+            result.highPriorityLeads.clear();
+            result.priorityRuleCount = 0;
+            result.highPriorityTodayCount = 0;
+        }
+        return result;
+    }
+
+    private static Boolean hasRequiredAccess() {
+        if (Test.isRunningTest() && forceDependencyUnavailable) {
+            return false;
+        }
+        Schema.DescribeSObjectResult leadDescribe = Lead.SObjectType.getDescribe();
+        if (!leadDescribe.isAccessible() || !leadDescribe.fields.getMap().containsKey(PRIORITY_FIELD)) {
+            return false;
+        }
+        for (String fieldName : new List<String>{
+            'Id', 'Name', 'Company', 'LeadSource', PRIORITY_FIELD, 'Status', 'OwnerId', 'CreatedDate'
+        }) {
+            if (!leadDescribe.fields.getMap().get(fieldName).getDescribe().isAccessible()) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
