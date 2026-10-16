@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>67.0</apiVersion>
     <assignments>
@@ -66,8 +66,10 @@
             <label>Priority Source</label>
         </rules>
     </decisions>
-    <description>Sets Lead Priority from exact Lead Source values before the Lead is saved. Kept inactive until Trade Show is available.</description>
-    <interviewLabel>Lead - Set Priority from Lead Source {!$Flow.CurrentDateTime}</interviewLabel>
+    <description
+  >Sets Lead Priority from exact Lead Source values before the Lead is saved. Kept inactive until Trade Show is available.</description>
+    <interviewLabel
+  >Lead - Set Priority from Lead Source {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Lead - Set Priority from Lead Source</label>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -86,7 +88,10 @@
         <connector>
             <targetReference>Is_Priority_Source</targetReference>
         </connector>
-        <filterFormula>OR(ISNEW(), ISCHANGED({!$Record.LeadSource}))</filterFormula>
+        <filterFormula
+    >OR(ISNEW(), ISCHANGED({!$Record.LeadSource}))</filterFormula>
+        <locationX>314</locationX>
+        <locationY>264</locationY>
         <object>Lead</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
