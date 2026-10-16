@@ -3,6 +3,7 @@
     <fullName>Lead_Priority__c</fullName>
     <label>Lead Priority</label>
     <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
     <type>Picklist</type>
     <valueSet>
         <valueSetDefinition>
