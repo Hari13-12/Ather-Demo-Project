@@ -16,9 +16,9 @@ export default class LeadPriorityConsole extends NavigationMixin(
   selectedStatus = ALL_VALUE;
   selectedLeadId;
   wiredResult;
-  serverSearchTerm;
-  serverSelectedSource;
-  serverSelectedStatus;
+  serverSearchTerm = null;
+  serverSelectedSource = null;
+  serverSelectedStatus = null;
 
   @wire(getConsoleData, {
     searchTerm: "$serverSearchTerm",
@@ -116,19 +116,19 @@ export default class LeadPriorityConsole extends NavigationMixin(
 
   handleSearch(event) {
     this.searchTerm = event.target.value;
-    this.serverSearchTerm = this.searchTerm || undefined;
+    this.serverSearchTerm = this.searchTerm.trim() || null;
   }
 
   handleSourceChange(event) {
     this.selectedSource = event.detail.value;
     this.serverSelectedSource =
-      this.selectedSource === ALL_VALUE ? undefined : this.selectedSource;
+      this.selectedSource === ALL_VALUE ? null : this.selectedSource;
   }
 
   handleStatusChange(event) {
     this.selectedStatus = event.detail.value;
     this.serverSelectedStatus =
-      this.selectedStatus === ALL_VALUE ? undefined : this.selectedStatus;
+      this.selectedStatus === ALL_VALUE ? null : this.selectedStatus;
   }
 
   handleRowSelect(event) {
