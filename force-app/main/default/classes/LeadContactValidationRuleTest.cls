@@ -1,6 +1,6 @@
 @IsTest
 private class LeadContactValidationRuleTest {
-  private static final String QUALIFIED_STATUS = 'Qualified';
+  private static final String QUALIFIED_STATUS = 'Closed - Converted';
   private static final String OPEN_STATUS = 'Open - Not Contacted';
   private static final String ERROR_MESSAGE = 'Provide an email address and phone number before qualifying this Lead.';
 

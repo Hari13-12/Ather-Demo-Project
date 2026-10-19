@@ -3,7 +3,7 @@
     <fullName>Require_Contact_Details_When_Qualified</fullName>
     <active>true</active>
     <errorConditionFormula
-  >AND(ISPICKVAL(Status, &quot;Qualified&quot;), OR(ISBLANK(Email), ISBLANK(Phone)))</errorConditionFormula>
+  >AND(ISPICKVAL(Status, &quot;Closed - Converted&quot;), OR(ISBLANK(Email), ISBLANK(Phone)))</errorConditionFormula>
     <errorDisplayField>Top of Page</errorDisplayField>
     <errorMessage
   >Provide an email address and phone number before qualifying this Lead.</errorMessage>
