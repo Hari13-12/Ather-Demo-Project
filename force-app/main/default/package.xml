@@ -9,5 +9,9 @@
         <members>Lead_Set_Priority_From_Lead_Source</members>
         <name>Flow</name>
     </types>
+    <types>
+        <members>Lead.Require_Contact_Details_When_Qualified</members>
+        <name>ValidationRule</name>
+    </types>
     <version>67.0</version>
 </Package>
