@@ -3,7 +3,9 @@
     <doesSendEmailToMembers>false</doesSendEmailToMembers>
     <name>Inbound Sales Queue</name>
     <queueMembers>
-        <memberType>AllInternalUsers</memberType>
+        <users>
+            <user>epic.9e3aebb84ffb@orgfarm.salesforce.com</user>
+        </users>
     </queueMembers>
     <queueSobject>Lead</queueSobject>
 </Queue>
