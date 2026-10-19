@@ -22,5 +22,13 @@
         <members>Lead.Require_Contact_Details_When_Qualified</members>
         <name>ValidationRule</name>
     </types>
+    <types>
+        <members>Lead</members>
+        <name>MatchingRules</name>
+    </types>
+    <types>
+        <members>Lead.Standard_Lead_Duplicate_Rule</members>
+        <name>DuplicateRule</name>
+    </types>
     <version>67.0</version>
 </Package>
