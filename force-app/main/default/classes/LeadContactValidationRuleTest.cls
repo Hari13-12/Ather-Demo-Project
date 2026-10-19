@@ -1,5 +1,7 @@
 @IsTest
 private class LeadContactValidationRuleTest {
+  // The target org has no literal "Qualified" Status value. "Closed - Converted"
+  // is its active conversion outcome and therefore the qualification equivalent.
   private static final String QUALIFIED_STATUS = 'Closed - Converted';
   private static final String OPEN_STATUS = 'Open - Not Contacted';
   private static final String ERROR_MESSAGE = 'Provide an email address and phone number before qualifying this Lead.';
