@@ -3,9 +3,9 @@
     <doesSendEmailToMembers>false</doesSendEmailToMembers>
     <name>Partner Sales Queue</name>
     <queueMembers>
-        <users>
-            <user>epic.9e3aebb84ffb@orgfarm.salesforce.com</user>
-        </users>
+        <roles>
+            <role>ChannelSalesTeam</role>
+        </roles>
     </queueMembers>
     <queueSobject>
         <sobjectType>Lead</sobjectType>
