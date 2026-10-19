@@ -11,7 +11,7 @@
     <duplicateRuleFilter xsi:nil="true" />
     <duplicateRuleMatchRules>
         <matchRuleSObjectType>Lead</matchRuleSObjectType>
-        <matchingRule>Standard_Lead_Match_Rule_v1_0</matchingRule>
+        <matchingRule>Lead_Email_Exact_Match</matchingRule>
         <objectMapping xsi:nil="true" />
     </duplicateRuleMatchRules>
     <duplicateRuleMatchRules>
