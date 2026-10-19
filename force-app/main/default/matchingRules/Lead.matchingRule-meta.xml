@@ -3,6 +3,7 @@
     <matchingRules>
         <fullName>Lead_Email_Exact_Match</fullName>
         <label>Lead Email Exact Match</label>
+        <ruleStatus>Active</ruleStatus>
         <matchingRuleItems>
             <blankValueBehavior>NullNotAllowed</blankValueBehavior>
             <fieldName>Email</fieldName>
