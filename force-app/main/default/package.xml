@@ -10,6 +10,15 @@
         <name>Flow</name>
     </types>
     <types>
+        <members>Lead</members>
+        <name>AssignmentRules</name>
+    </types>
+    <types>
+        <members>Inbound_Sales_Queue</members>
+        <members>Partner_Sales_Queue</members>
+        <name>Queue</name>
+    </types>
+    <types>
         <members>Lead.Require_Contact_Details_When_Qualified</members>
         <name>ValidationRule</name>
     </types>
