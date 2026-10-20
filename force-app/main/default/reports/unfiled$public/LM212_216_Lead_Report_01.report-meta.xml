@@ -16,17 +16,17 @@
     <columns>LEAD.CREATED_DATE</columns>
     <description
   >Placeholder for AG-212 pending detailed requirements. Current-year Lead volume grouped by Status.</description>
+    <filter>
+        <criteriaItems>
+            <column>LEAD.CREATED_DATE</column>
+            <operator>equals</operator>
+            <value>THIS_YEAR</value>
+        </criteriaItems>
+    </filter>
     <groupingsDown>
         <field>LEAD.STATUS</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>LM212_216_Lead_Report_01</name>
-    <reportOptions>
-        <filter>
-            <column>LEAD.CREATED_DATE</column>
-            <operator>equals</operator>
-            <value>THIS_YEAR</value>
-        </filter>
-    </reportOptions>
     <reportType>Leads</reportType>
 </Report>

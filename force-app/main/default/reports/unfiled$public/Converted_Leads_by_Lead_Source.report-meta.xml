@@ -12,17 +12,17 @@
     <columns>LEAD.CONVERTED_DATE</columns>
     <description
   >Converted Leads only, grouped by original Lead Source. Results are limited to Lead fields retained and exposed by the standard Leads report type after conversion.</description>
+    <filter>
+        <criteriaItems>
+            <column>LEAD.IS_CONVERTED</column>
+            <operator>equals</operator>
+            <value>true</value>
+        </criteriaItems>
+    </filter>
     <groupingsDown>
         <field>LEAD.LEAD_SOURCE</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Converted Leads by Lead Source</name>
-    <reportOptions>
-        <filter>
-            <column>LEAD.IS_CONVERTED</column>
-            <operator>equals</operator>
-            <value>true</value>
-        </filter>
-    </reportOptions>
     <reportType>Leads</reportType>
 </Report>

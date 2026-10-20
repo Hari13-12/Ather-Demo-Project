@@ -11,8 +11,7 @@
             <dashboardComponent>
                     <componentType>ReportChart</componentType>
                     <report
-          >unfiled$public/Leads_by_Lead_Source_and_Lead_Priority</report>
-                    <showTitle>true</showTitle>
+        >unfiled$public/Leads_by_Lead_Source_and_Lead_Priority</report>
                     <title>Lead Source and Priority</title>
             </dashboardComponent>
             <rowIndex>0</rowIndex>
@@ -24,7 +23,6 @@
             <dashboardComponent>
                     <componentType>ReportChart</componentType>
                     <report>unfiled$public/High_Priority_Leads_by_Owner</report>
-                    <showTitle>true</showTitle>
                     <title>High Priority Leads by Owner</title>
             </dashboardComponent>
             <rowIndex>0</rowIndex>
@@ -36,7 +34,6 @@
             <dashboardComponent>
                     <componentType>ReportChart</componentType>
                     <report>unfiled$public/Leads_by_Status</report>
-                    <showTitle>true</showTitle>
                     <title>Leads by Status</title>
             </dashboardComponent>
             <rowIndex>7</rowIndex>
@@ -48,8 +45,7 @@
             <dashboardComponent>
                     <componentType>ReportChart</componentType>
                     <report
-          >unfiled$public/Converted_Leads_by_Lead_Source</report>
-                    <showTitle>true</showTitle>
+        >unfiled$public/Converted_Leads_by_Lead_Source</report>
                     <title>Converted Leads by Source</title>
             </dashboardComponent>
             <rowIndex>7</rowIndex>
@@ -61,7 +57,6 @@
             <dashboardComponent>
                     <componentType>Metric</componentType>
                     <report>unfiled$public/High_Priority_Leads_by_Owner</report>
-                    <showTitle>true</showTitle>
                     <title>Total High Priority Leads</title>
             </dashboardComponent>
             <rowIndex>14</rowIndex>

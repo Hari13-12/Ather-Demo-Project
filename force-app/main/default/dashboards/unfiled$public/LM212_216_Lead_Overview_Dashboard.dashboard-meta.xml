@@ -11,7 +11,6 @@
             <dashboardComponent>
                     <componentType>ReportChart</componentType>
                     <report>unfiled$public/LM212_216_Lead_Report_01</report>
-                    <showTitle>true</showTitle>
                     <title>Lead Status Overview</title>
             </dashboardComponent>
             <rowIndex>0</rowIndex>
@@ -23,7 +22,6 @@
             <dashboardComponent>
                     <componentType>ReportChart</componentType>
                     <report>unfiled$public/LM212_216_Lead_Report_02</report>
-                    <showTitle>true</showTitle>
                     <title>Lead Source Overview</title>
             </dashboardComponent>
             <rowIndex>0</rowIndex>
@@ -35,7 +33,6 @@
             <dashboardComponent>
                     <componentType>ReportChart</componentType>
                     <report>unfiled$public/LM212_216_Lead_Report_03</report>
-                    <showTitle>true</showTitle>
                     <title>Lead Owner Overview</title>
             </dashboardComponent>
             <rowIndex>7</rowIndex>
@@ -47,7 +44,6 @@
             <dashboardComponent>
                     <componentType>ReportChart</componentType>
                     <report>unfiled$public/LM212_216_Lead_Report_04</report>
-                    <showTitle>true</showTitle>
                     <title>Lead Status Distribution</title>
             </dashboardComponent>
             <rowIndex>7</rowIndex>
