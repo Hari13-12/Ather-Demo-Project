@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Dashboard xmlns="http://soap.sforce.com/2006/04/metadata">
     <dashboardType>LoggedInUser</dashboardType>
-    <description>Current-year Lead overview for AG-212 through AG-215. Components respect the viewing user's existing report and Lead access.</description>
+    <description
+  >Current-year Lead overview for AG-212 through AG-215. Components respect the viewing user's existing report and Lead access.</description>
     <isGridLayout>true</isGridLayout>
     <dashboardGridLayout>
         <dashboardGridComponents>
