@@ -5,65 +5,64 @@
   >Dynamic Lead performance dashboard. Components respect the viewing user's existing report and Lead access.</description>
     <isGridLayout>true</isGridLayout>
     <dashboardGridLayout>
-        <column>0</column>
-        <columnSpan>6</columnSpan>
-        <component>
-            <componentType>ReportChart</componentType>
-            <report
-      >unfiled$public/Leads_by_Lead_Source_and_Lead_Priority</report>
-            <showTitle>true</showTitle>
-            <title>Lead Source and Priority</title>
-        </component>
-        <row>0</row>
-        <rowSpan>7</rowSpan>
-    </dashboardGridLayout>
-    <dashboardGridLayout>
-        <column>6</column>
-        <columnSpan>6</columnSpan>
-        <component>
-            <componentType>ReportChart</componentType>
-            <report>unfiled$public/High_Priority_Leads_by_Owner</report>
-            <showTitle>true</showTitle>
-            <title>High Priority Leads by Owner</title>
-        </component>
-        <row>0</row>
-        <rowSpan>7</rowSpan>
-    </dashboardGridLayout>
-    <dashboardGridLayout>
-        <column>0</column>
-        <columnSpan>6</columnSpan>
-        <component>
-            <componentType>ReportChart</componentType>
-            <report>unfiled$public/Leads_by_Status</report>
-            <showTitle>true</showTitle>
-            <title>Leads by Status</title>
-        </component>
-        <row>7</row>
-        <rowSpan>7</rowSpan>
-    </dashboardGridLayout>
-    <dashboardGridLayout>
-        <column>6</column>
-        <columnSpan>6</columnSpan>
-        <component>
-            <componentType>ReportChart</componentType>
-            <report>unfiled$public/Converted_Leads_by_Lead_Source</report>
-            <showTitle>true</showTitle>
-            <title>Converted Leads by Source</title>
-        </component>
-        <row>7</row>
-        <rowSpan>7</rowSpan>
-    </dashboardGridLayout>
-    <dashboardGridLayout>
-        <column>0</column>
-        <columnSpan>3</columnSpan>
-        <component>
-            <componentType>Metric</componentType>
-            <report>unfiled$public/High_Priority_Leads_by_Owner</report>
-            <showTitle>true</showTitle>
-            <title>Total High Priority Leads</title>
-        </component>
-        <row>14</row>
-        <rowSpan>3</rowSpan>
+        <dashboardGridLayoutRows>
+            <dashboardGridLayoutColumns>
+                <columnSpan>6</columnSpan>
+                <component>
+                    <componentType>ReportChart</componentType>
+                    <report
+          >unfiled$public/Leads_by_Lead_Source_and_Lead_Priority</report>
+                    <showTitle>true</showTitle>
+                    <title>Lead Source and Priority</title>
+                </component>
+                <rowSpan>7</rowSpan>
+            </dashboardGridLayoutColumns>
+            <dashboardGridLayoutColumns>
+                <columnSpan>6</columnSpan>
+                <component>
+                    <componentType>ReportChart</componentType>
+                    <report>unfiled$public/High_Priority_Leads_by_Owner</report>
+                    <showTitle>true</showTitle>
+                    <title>High Priority Leads by Owner</title>
+                </component>
+                <rowSpan>7</rowSpan>
+            </dashboardGridLayoutColumns>
+        </dashboardGridLayoutRows>
+        <dashboardGridLayoutRows>
+            <dashboardGridLayoutColumns>
+                <columnSpan>6</columnSpan>
+                <component>
+                    <componentType>ReportChart</componentType>
+                    <report>unfiled$public/Leads_by_Status</report>
+                    <showTitle>true</showTitle>
+                    <title>Leads by Status</title>
+                </component>
+                <rowSpan>7</rowSpan>
+            </dashboardGridLayoutColumns>
+            <dashboardGridLayoutColumns>
+                <columnSpan>6</columnSpan>
+                <component>
+                    <componentType>ReportChart</componentType>
+                    <report
+          >unfiled$public/Converted_Leads_by_Lead_Source</report>
+                    <showTitle>true</showTitle>
+                    <title>Converted Leads by Source</title>
+                </component>
+                <rowSpan>7</rowSpan>
+            </dashboardGridLayoutColumns>
+        </dashboardGridLayoutRows>
+        <dashboardGridLayoutRows>
+            <dashboardGridLayoutColumns>
+                <columnSpan>3</columnSpan>
+                <component>
+                    <componentType>Metric</componentType>
+                    <report>unfiled$public/High_Priority_Leads_by_Owner</report>
+                    <showTitle>true</showTitle>
+                    <title>Total High Priority Leads</title>
+                </component>
+                <rowSpan>3</rowSpan>
+            </dashboardGridLayoutColumns>
+        </dashboardGridLayoutRows>
     </dashboardGridLayout>
     <title>Lead Performance Dashboard</title>
 </Dashboard>

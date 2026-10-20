@@ -15,11 +15,6 @@
         <matchingRule>Lead_Email_Exact_Match</matchingRule>
         <objectMapping xsi:nil="true" />
     </duplicateRuleMatchRules>
-    <duplicateRuleMatchRules>
-        <matchRuleSObjectType>Lead</matchRuleSObjectType>
-        <matchingRule>Lead_Name_Company_Exact_Match</matchingRule>
-        <objectMapping xsi:nil="true" />
-    </duplicateRuleMatchRules>
     <isActive>true</isActive>
     <masterLabel>Lead Duplicate Review</masterLabel>
     <operationsOnInsert>Alert</operationsOnInsert>
