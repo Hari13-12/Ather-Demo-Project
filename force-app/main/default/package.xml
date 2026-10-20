@@ -31,10 +31,15 @@
         <members>unfiled$public.High_Priority_Leads_by_Owner</members>
         <members>unfiled$public.Leads_by_Status</members>
         <members>unfiled$public.Converted_Leads_by_Lead_Source</members>
+        <members>unfiled$public.LM212_216_Lead_Report_01</members>
+        <members>unfiled$public.LM212_216_Lead_Report_02</members>
+        <members>unfiled$public.LM212_216_Lead_Report_03</members>
+        <members>unfiled$public.LM212_216_Lead_Report_04</members>
         <name>Report</name>
     </types>
     <types>
         <members>unfiled$public.Lead_Performance_Dashboard</members>
+        <members>unfiled$public.LM212_216_Lead_Overview_Dashboard</members>
         <name>Dashboard</name>
     </types>
     <version>68.0</version>

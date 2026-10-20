@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Dashboard xmlns="http://soap.sforce.com/2006/04/metadata">
+    <dashboardType>LoggedInUser</dashboardType>
+    <description
+  >Placeholder for AG-216 pending detailed requirements. This dashboard combines the AG-212 through AG-215 placeholder Lead reports.</description>
+    <isGridLayout>true</isGridLayout>
+    <dashboardGridLayout>
+        <dashboardGridComponents>
+            <colSpan>6</colSpan>
+            <columnIndex>0</columnIndex>
+            <dashboardComponent>
+                    <componentType>ReportChart</componentType>
+                    <report>unfiled$public/LM212_216_Lead_Report_01</report>
+                    <title>Lead Status Overview</title>
+            </dashboardComponent>
+            <rowIndex>0</rowIndex>
+            <rowSpan>7</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>6</colSpan>
+            <columnIndex>6</columnIndex>
+            <dashboardComponent>
+                    <componentType>ReportChart</componentType>
+                    <report>unfiled$public/LM212_216_Lead_Report_02</report>
+                    <title>Lead Source Overview</title>
+            </dashboardComponent>
+            <rowIndex>0</rowIndex>
+            <rowSpan>7</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>6</colSpan>
+            <columnIndex>0</columnIndex>
+            <dashboardComponent>
+                    <componentType>ReportChart</componentType>
+                    <report>unfiled$public/LM212_216_Lead_Report_03</report>
+                    <title>Lead Owner Overview</title>
+            </dashboardComponent>
+            <rowIndex>7</rowIndex>
+            <rowSpan>7</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>6</colSpan>
+            <columnIndex>6</columnIndex>
+            <dashboardComponent>
+                    <componentType>ReportChart</componentType>
+                    <report>unfiled$public/LM212_216_Lead_Report_04</report>
+                    <title>Lead Status Distribution</title>
+            </dashboardComponent>
+            <rowIndex>7</rowIndex>
+            <rowSpan>7</rowSpan>
+        </dashboardGridComponents>
+        <numberOfColumns>12</numberOfColumns>
+        <rowHeight>40</rowHeight>
+    </dashboardGridLayout>
+    <title>LM212_216_Lead_Overview_Dashboard</title>
+</Dashboard>
