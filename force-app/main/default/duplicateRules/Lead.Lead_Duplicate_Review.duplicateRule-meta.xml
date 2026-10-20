@@ -27,5 +27,5 @@
     <operationsOnUpdate>Alert</operationsOnUpdate>
     <operationsOnUpdate>Report</operationsOnUpdate>
     <securityOption>EnforceSharingRules</securityOption>
-    <sortOrder>1</sortOrder>
+    <sortOrder>2</sortOrder>
 </DuplicateRule>

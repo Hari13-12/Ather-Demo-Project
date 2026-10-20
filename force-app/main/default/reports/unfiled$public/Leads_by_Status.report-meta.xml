@@ -5,7 +5,6 @@
         <groupingColumn>LEAD.STATUS</groupingColumn>
         <legendPosition>Bottom</legendPosition>
         <showValues>true</showValues>
-        <summary>RecordCount</summary>
     </chart>
     <columns>LEAD.NAME</columns>
     <columns>LEAD.COMPANY</columns>
