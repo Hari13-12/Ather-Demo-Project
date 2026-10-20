@@ -2,7 +2,7 @@
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <chart>
         <chartType>Donut</chartType>
-        <grouping>LEAD.STATUS</grouping>
+        <groupingColumn>LEAD.STATUS</groupingColumn>
         <legendPosition>Bottom</legendPosition>
         <showValues>true</showValues>
         <summary>RecordCount</summary>

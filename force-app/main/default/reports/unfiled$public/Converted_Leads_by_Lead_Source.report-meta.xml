@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <chart>
-        <chartType>VerticalBar</chartType>
-        <grouping>LEAD.LEAD_SOURCE</grouping>
+        <chartType>Column</chartType>
+        <groupingColumn>LEAD.LEAD_SOURCE</groupingColumn>
         <legendPosition>Bottom</legendPosition>
         <showValues>true</showValues>
         <summary>RecordCount</summary>

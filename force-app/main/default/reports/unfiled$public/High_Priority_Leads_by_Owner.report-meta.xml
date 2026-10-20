@@ -2,7 +2,7 @@
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <chart>
         <chartType>HorizontalBar</chartType>
-        <grouping>LEAD.OWNER_FULL_NAME</grouping>
+        <groupingColumn>LEAD.OWNER_FULL_NAME</groupingColumn>
         <legendPosition>Bottom</legendPosition>
         <showValues>true</showValues>
         <summary>RecordCount</summary>
