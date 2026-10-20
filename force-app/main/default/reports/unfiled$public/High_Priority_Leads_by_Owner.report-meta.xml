@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <chart>
+        <chartSummaries>
+            <aggregate>RecordCount</aggregate>
+            <column>RowCount</column>
+        </chartSummaries>
         <chartType>HorizontalBar</chartType>
         <groupingColumn>LEAD.OWNER_NAME</groupingColumn>
         <legendPosition>Bottom</legendPosition>
         <showValues>true</showValues>
-        <summary>RecordCount</summary>
     </chart>
     <columns>LEAD.NAME</columns>
     <columns>LEAD.COMPANY</columns>
