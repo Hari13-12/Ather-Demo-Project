@@ -4,7 +4,7 @@
         <chartSummaries>
             <column>RowCount</column>
         </chartSummaries>
-        <chartType>Bar</chartType>
+        <chartType>VerticalColumn</chartType>
         <groupingColumn>LEAD.STATUS</groupingColumn>
         <legendPosition>Bottom</legendPosition>
         <showValues>true</showValues>

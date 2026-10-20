@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Dashboard xmlns="http://soap.sforce.com/2006/04/metadata">
     <dashboardType>LoggedInUser</dashboardType>
-    <description
-  >Placeholder for AG-216 pending detailed requirements. This dashboard combines the AG-212 through AG-215 placeholder Lead reports.</description>
+    <description>Current-year Lead overview for AG-212 through AG-215. Components respect the viewing user's existing report and Lead access.</description>
     <isGridLayout>true</isGridLayout>
     <dashboardGridLayout>
         <dashboardGridComponents>
             <colSpan>6</colSpan>
             <columnIndex>0</columnIndex>
             <dashboardComponent>
-                    <componentType>ReportChart</componentType>
-                    <report>unfiled$public/LM212_216_Lead_Report_01</report>
-                    <title>Lead Status Overview</title>
+                <chartSummary>
+                    <column>RowCount</column>
+                </chartSummary>
+                <componentType>Column</componentType>
+                <groupingColumn>LEAD.STATUS</groupingColumn>
+                <report>unfiled$public/LM212_216_Lead_Report_01</report>
+                <title>Lead Status Overview</title>
+                <useReportChart>true</useReportChart>
             </dashboardComponent>
             <rowIndex>0</rowIndex>
             <rowSpan>7</rowSpan>
@@ -20,9 +24,14 @@
             <colSpan>6</colSpan>
             <columnIndex>6</columnIndex>
             <dashboardComponent>
-                    <componentType>ReportChart</componentType>
-                    <report>unfiled$public/LM212_216_Lead_Report_02</report>
-                    <title>Lead Source Overview</title>
+                <chartSummary>
+                    <column>RowCount</column>
+                </chartSummary>
+                <componentType>Column</componentType>
+                <groupingColumn>LEAD.LEAD_SOURCE</groupingColumn>
+                <report>unfiled$public/LM212_216_Lead_Report_02</report>
+                <title>Lead Source Overview</title>
+                <useReportChart>true</useReportChart>
             </dashboardComponent>
             <rowIndex>0</rowIndex>
             <rowSpan>7</rowSpan>
@@ -31,9 +40,14 @@
             <colSpan>6</colSpan>
             <columnIndex>0</columnIndex>
             <dashboardComponent>
-                    <componentType>ReportChart</componentType>
-                    <report>unfiled$public/LM212_216_Lead_Report_03</report>
-                    <title>Lead Owner Overview</title>
+                <chartSummary>
+                    <column>RowCount</column>
+                </chartSummary>
+                <componentType>Bar</componentType>
+                <groupingColumn>LEAD.OWNER_FULL_NAME</groupingColumn>
+                <report>unfiled$public/LM212_216_Lead_Report_03</report>
+                <title>Lead Owner Overview</title>
+                <useReportChart>true</useReportChart>
             </dashboardComponent>
             <rowIndex>7</rowIndex>
             <rowSpan>7</rowSpan>
@@ -42,9 +56,14 @@
             <colSpan>6</colSpan>
             <columnIndex>6</columnIndex>
             <dashboardComponent>
-                    <componentType>ReportChart</componentType>
-                    <report>unfiled$public/LM212_216_Lead_Report_04</report>
-                    <title>Lead Status Distribution</title>
+                <chartSummary>
+                    <column>RowCount</column>
+                </chartSummary>
+                <componentType>Donut</componentType>
+                <groupingColumn>LEAD.STATUS</groupingColumn>
+                <report>unfiled$public/LM212_216_Lead_Report_04</report>
+                <title>Lead Status Distribution</title>
+                <useReportChart>true</useReportChart>
             </dashboardComponent>
             <rowIndex>7</rowIndex>
             <rowSpan>7</rowSpan>

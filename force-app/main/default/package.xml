@@ -1,32 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>Lead</members>
-        <name>AssignmentRules</name>
-    </types>
-    <types>
-        <members>Inbound_Sales_Queue</members>
-        <members>Partner_Sales_Queue</members>
-        <name>Queue</name>
-    </types>
-    <types>
-        <members>Lead.Require_Contact_Details_When_Qualified</members>
-        <name>ValidationRule</name>
-    </types>
-    <types>
-        <members>Lead</members>
-        <name>MatchingRules</name>
-    </types>
-    <types>
-        <members>Lead.Lead_Duplicate_Review</members>
-        <name>DuplicateRule</name>
-    </types>
-    <types>
-        <members>LeadContactValidationRuleTest</members>
-        <members>LeadRulesTest</members>
-        <name>ApexClass</name>
-    </types>
-    <types>
         <members>unfiled$public.Leads_by_Lead_Source_and_Lead_Priority</members>
         <members>unfiled$public.High_Priority_Leads_by_Owner</members>
         <members>unfiled$public.Leads_by_Status</members>
