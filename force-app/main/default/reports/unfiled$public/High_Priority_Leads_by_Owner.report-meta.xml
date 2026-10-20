@@ -18,7 +18,6 @@
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>High Priority Leads by Owner</name>
-    <reportType>Leads</reportType>
     <reportOptions>
         <filter>
             <column>LEAD.LEAD_PRIORITY__C</column>
@@ -26,4 +25,5 @@
             <value>High</value>
         </filter>
     </reportOptions>
+    <reportType>Leads</reportType>
 </Report>

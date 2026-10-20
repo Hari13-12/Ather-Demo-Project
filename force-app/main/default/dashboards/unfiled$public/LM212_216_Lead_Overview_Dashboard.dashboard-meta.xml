@@ -5,50 +5,56 @@
   >Placeholder for AG-216 pending detailed requirements. This dashboard combines the AG-212 through AG-215 placeholder Lead reports.</description>
     <isGridLayout>true</isGridLayout>
     <dashboardGridLayout>
-        <dashboardGridLayoutRows>
-            <dashboardGridLayoutColumns>
-                <columnSpan>6</columnSpan>
-                <component>
+        <dashboardGridComponents>
+            <colSpan>6</colSpan>
+            <columnIndex>0</columnIndex>
+            <dashboardComponent>
                     <componentType>ReportChart</componentType>
                     <report>unfiled$public/LM212_216_Lead_Report_01</report>
                     <showTitle>true</showTitle>
                     <title>Lead Status Overview</title>
-                </component>
-                <rowSpan>7</rowSpan>
-            </dashboardGridLayoutColumns>
-            <dashboardGridLayoutColumns>
-                <columnSpan>6</columnSpan>
-                <component>
+            </dashboardComponent>
+            <rowIndex>0</rowIndex>
+            <rowSpan>7</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>6</colSpan>
+            <columnIndex>6</columnIndex>
+            <dashboardComponent>
                     <componentType>ReportChart</componentType>
                     <report>unfiled$public/LM212_216_Lead_Report_02</report>
                     <showTitle>true</showTitle>
                     <title>Lead Source Overview</title>
-                </component>
-                <rowSpan>7</rowSpan>
-            </dashboardGridLayoutColumns>
-        </dashboardGridLayoutRows>
-        <dashboardGridLayoutRows>
-            <dashboardGridLayoutColumns>
-                <columnSpan>6</columnSpan>
-                <component>
+            </dashboardComponent>
+            <rowIndex>0</rowIndex>
+            <rowSpan>7</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>6</colSpan>
+            <columnIndex>0</columnIndex>
+            <dashboardComponent>
                     <componentType>ReportChart</componentType>
                     <report>unfiled$public/LM212_216_Lead_Report_03</report>
                     <showTitle>true</showTitle>
                     <title>Lead Owner Overview</title>
-                </component>
-                <rowSpan>7</rowSpan>
-            </dashboardGridLayoutColumns>
-            <dashboardGridLayoutColumns>
-                <columnSpan>6</columnSpan>
-                <component>
+            </dashboardComponent>
+            <rowIndex>7</rowIndex>
+            <rowSpan>7</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>6</colSpan>
+            <columnIndex>6</columnIndex>
+            <dashboardComponent>
                     <componentType>ReportChart</componentType>
                     <report>unfiled$public/LM212_216_Lead_Report_04</report>
                     <showTitle>true</showTitle>
                     <title>Lead Status Distribution</title>
-                </component>
-                <rowSpan>7</rowSpan>
-            </dashboardGridLayoutColumns>
-        </dashboardGridLayoutRows>
+            </dashboardComponent>
+            <rowIndex>7</rowIndex>
+            <rowSpan>7</rowSpan>
+        </dashboardGridComponents>
+        <numberOfColumns>12</numberOfColumns>
+        <rowHeight>40</rowHeight>
     </dashboardGridLayout>
     <title>LM212_216_Lead_Overview_Dashboard</title>
 </Dashboard>

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <chart>
-        <chartSummaries>RowCount</chartSummaries>
-        <chartType>VerticalBar</chartType>
+        <chartSummaries>
+            <column>RowCount</column>
+        </chartSummaries>
+        <chartType>Bar</chartType>
         <groupingColumn>LEAD.STATUS</groupingColumn>
         <legendPosition>Bottom</legendPosition>
         <showValues>true</showValues>
@@ -19,7 +21,6 @@
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>LM212_216_Lead_Report_01</name>
-    <reportType>Leads</reportType>
     <reportOptions>
         <filter>
             <column>LEAD.CREATED_DATE</column>
@@ -27,4 +28,5 @@
             <value>THIS_YEAR</value>
         </filter>
     </reportOptions>
+    <reportType>Leads</reportType>
 </Report>

@@ -5,64 +5,70 @@
   >Dynamic Lead performance dashboard. Components respect the viewing user's existing report and Lead access.</description>
     <isGridLayout>true</isGridLayout>
     <dashboardGridLayout>
-        <dashboardGridLayoutRows>
-            <dashboardGridLayoutColumns>
-                <columnSpan>6</columnSpan>
-                <component>
+        <dashboardGridComponents>
+            <colSpan>6</colSpan>
+            <columnIndex>0</columnIndex>
+            <dashboardComponent>
                     <componentType>ReportChart</componentType>
                     <report
           >unfiled$public/Leads_by_Lead_Source_and_Lead_Priority</report>
                     <showTitle>true</showTitle>
                     <title>Lead Source and Priority</title>
-                </component>
-                <rowSpan>7</rowSpan>
-            </dashboardGridLayoutColumns>
-            <dashboardGridLayoutColumns>
-                <columnSpan>6</columnSpan>
-                <component>
+            </dashboardComponent>
+            <rowIndex>0</rowIndex>
+            <rowSpan>7</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>6</colSpan>
+            <columnIndex>6</columnIndex>
+            <dashboardComponent>
                     <componentType>ReportChart</componentType>
                     <report>unfiled$public/High_Priority_Leads_by_Owner</report>
                     <showTitle>true</showTitle>
                     <title>High Priority Leads by Owner</title>
-                </component>
-                <rowSpan>7</rowSpan>
-            </dashboardGridLayoutColumns>
-        </dashboardGridLayoutRows>
-        <dashboardGridLayoutRows>
-            <dashboardGridLayoutColumns>
-                <columnSpan>6</columnSpan>
-                <component>
+            </dashboardComponent>
+            <rowIndex>0</rowIndex>
+            <rowSpan>7</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>6</colSpan>
+            <columnIndex>0</columnIndex>
+            <dashboardComponent>
                     <componentType>ReportChart</componentType>
                     <report>unfiled$public/Leads_by_Status</report>
                     <showTitle>true</showTitle>
                     <title>Leads by Status</title>
-                </component>
-                <rowSpan>7</rowSpan>
-            </dashboardGridLayoutColumns>
-            <dashboardGridLayoutColumns>
-                <columnSpan>6</columnSpan>
-                <component>
+            </dashboardComponent>
+            <rowIndex>7</rowIndex>
+            <rowSpan>7</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>6</colSpan>
+            <columnIndex>6</columnIndex>
+            <dashboardComponent>
                     <componentType>ReportChart</componentType>
                     <report
           >unfiled$public/Converted_Leads_by_Lead_Source</report>
                     <showTitle>true</showTitle>
                     <title>Converted Leads by Source</title>
-                </component>
-                <rowSpan>7</rowSpan>
-            </dashboardGridLayoutColumns>
-        </dashboardGridLayoutRows>
-        <dashboardGridLayoutRows>
-            <dashboardGridLayoutColumns>
-                <columnSpan>3</columnSpan>
-                <component>
+            </dashboardComponent>
+            <rowIndex>7</rowIndex>
+            <rowSpan>7</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>3</colSpan>
+            <columnIndex>0</columnIndex>
+            <dashboardComponent>
                     <componentType>Metric</componentType>
                     <report>unfiled$public/High_Priority_Leads_by_Owner</report>
                     <showTitle>true</showTitle>
                     <title>Total High Priority Leads</title>
-                </component>
-                <rowSpan>3</rowSpan>
-            </dashboardGridLayoutColumns>
-        </dashboardGridLayoutRows>
+            </dashboardComponent>
+            <rowIndex>14</rowIndex>
+            <rowSpan>3</rowSpan>
+        </dashboardGridComponents>
+        <numberOfColumns>12</numberOfColumns>
+        <rowHeight>40</rowHeight>
     </dashboardGridLayout>
     <title>Lead Performance Dashboard</title>
 </Dashboard>
