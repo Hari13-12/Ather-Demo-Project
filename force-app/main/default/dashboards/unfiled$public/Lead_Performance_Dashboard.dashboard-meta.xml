@@ -1,12 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Dashboard xmlns="http://soap.sforce.com/2006/04/metadata">
     <dashboardType>LoggedInUser</dashboardType>
-    <description>Dynamic Lead performance dashboard. Components respect the viewing user's existing report and Lead access.</description>
+    <description
+  >Dynamic Lead performance dashboard. Components respect the viewing user's existing report and Lead access.</description>
     <isGridLayout>true</isGridLayout>
     <dashboardGridLayout>
         <dashboardGridComponent>
             <componentType>ReportChart</componentType>
-            <report>unfiled$public/Leads_by_Lead_Source_and_Lead_Priority</report>
+            <report
+      >unfiled$public/Leads_by_Lead_Source_and_Lead_Priority</report>
             <showTitle>true</showTitle>
             <title>Lead Source and Priority</title>
         </dashboardGridComponent>

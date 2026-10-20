@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <chart>
         <chartType>Donut</chartType>
@@ -11,7 +11,8 @@
     <columns>LEAD.COMPANY</columns>
     <columns>LEAD.STATUS</columns>
     <columns>LEAD.OWNER_FULL_NAME</columns>
-    <description>Lead volume grouped by the standard Lead Status field.</description>
+    <description
+  >Lead volume grouped by the standard Lead Status field.</description>
     <groupingsDown>
         <field>LEAD.STATUS</field>
         <sortOrder>Asc</sortOrder>
