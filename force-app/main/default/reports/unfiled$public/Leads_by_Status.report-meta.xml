@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <chart>
+        <chartType>Donut</chartType>
+        <grouping>LEAD.STATUS</grouping>
+        <legendPosition>Bottom</legendPosition>
+        <showValues>true</showValues>
+        <summary>RecordCount</summary>
+    </chart>
+    <columns>LEAD.NAME</columns>
+    <columns>LEAD.COMPANY</columns>
+    <columns>LEAD.STATUS</columns>
+    <columns>LEAD.OWNER_FULL_NAME</columns>
+    <description>Lead volume grouped by the standard Lead Status field.</description>
+    <groupingsDown>
+        <field>LEAD.STATUS</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Leads by Status</name>
+    <reportType>Leads</reportType>
+</Report>
