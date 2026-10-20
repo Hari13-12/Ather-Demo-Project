@@ -9,12 +9,21 @@
         <legendPosition>Bottom</legendPosition>
         <showValues>true</showValues>
     </chart>
-    <columns>LEAD.NAME</columns>
-    <columns>LEAD.COMPANY</columns>
-    <columns>LEAD.LEAD_SOURCE</columns>
-    <columns>LEAD.LEAD_PRIORITY__C</columns>
+    <columns>
+        <field>LEAD.NAME</field>
+    </columns>
+    <columns>
+        <field>LEAD.COMPANY</field>
+    </columns>
+    <columns>
+        <field>LEAD.LEAD_SOURCE</field>
+    </columns>
+    <columns>
+        <field>LEAD.LEAD_PRIORITY__C</field>
+    </columns>
     <description
   >Lead volume grouped by saved Lead Source and Lead Priority values.</description>
+    <format>Summary</format>
     <groupingsDown>
         <field>LEAD.LEAD_SOURCE</field>
         <sortOrder>Asc</sortOrder>

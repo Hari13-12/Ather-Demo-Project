@@ -9,10 +9,18 @@
         <legendPosition>Bottom</legendPosition>
         <showValues>true</showValues>
     </chart>
-    <columns>LEAD.NAME</columns>
-    <columns>LEAD.COMPANY</columns>
-    <columns>LEAD.LEAD_SOURCE</columns>
-    <columns>LEAD.CONVERTED_DATE</columns>
+    <columns>
+        <field>LEAD.NAME</field>
+    </columns>
+    <columns>
+        <field>LEAD.COMPANY</field>
+    </columns>
+    <columns>
+        <field>LEAD.LEAD_SOURCE</field>
+    </columns>
+    <columns>
+        <field>LEAD.CONVERTED_DATE</field>
+    </columns>
     <description
   >Converted Leads only, grouped by original Lead Source. Results are limited to Lead fields retained and exposed by the standard Leads report type after conversion.</description>
     <filter>
@@ -22,6 +30,7 @@
             <value>true</value>
         </criteriaItems>
     </filter>
+    <format>Summary</format>
     <groupingsDown>
         <field>LEAD.LEAD_SOURCE</field>
         <sortOrder>Asc</sortOrder>

@@ -9,11 +9,21 @@
         <legendPosition>Bottom</legendPosition>
         <showValues>true</showValues>
     </chart>
-    <columns>LEAD.NAME</columns>
-    <columns>LEAD.COMPANY</columns>
-    <columns>LEAD.OWNER_FULL_NAME</columns>
-    <columns>LEAD.LEAD_SOURCE</columns>
-    <columns>LEAD.LEAD_PRIORITY__C</columns>
+    <columns>
+        <field>LEAD.NAME</field>
+    </columns>
+    <columns>
+        <field>LEAD.COMPANY</field>
+    </columns>
+    <columns>
+        <field>LEAD.OWNER_FULL_NAME</field>
+    </columns>
+    <columns>
+        <field>LEAD.LEAD_SOURCE</field>
+    </columns>
+    <columns>
+        <field>LEAD.LEAD_PRIORITY__C</field>
+    </columns>
     <description
   >High-priority Leads, grouped by Lead Owner. Priority is the value saved by the existing Lead Priority Flow.</description>
     <filter>
@@ -23,6 +33,7 @@
             <value>High</value>
         </criteriaItems>
     </filter>
+    <format>Summary</format>
     <groupingsDown>
         <field>LEAD.OWNER_FULL_NAME</field>
         <sortOrder>Asc</sortOrder>

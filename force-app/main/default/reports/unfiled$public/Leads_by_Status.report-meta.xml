@@ -9,12 +9,21 @@
         <legendPosition>Bottom</legendPosition>
         <showValues>true</showValues>
     </chart>
-    <columns>LEAD.NAME</columns>
-    <columns>LEAD.COMPANY</columns>
-    <columns>LEAD.STATUS</columns>
-    <columns>LEAD.OWNER_FULL_NAME</columns>
+    <columns>
+        <field>LEAD.NAME</field>
+    </columns>
+    <columns>
+        <field>LEAD.COMPANY</field>
+    </columns>
+    <columns>
+        <field>LEAD.STATUS</field>
+    </columns>
+    <columns>
+        <field>LEAD.OWNER_FULL_NAME</field>
+    </columns>
     <description
   >Lead volume grouped by the standard Lead Status field.</description>
+    <format>Summary</format>
     <groupingsDown>
         <field>LEAD.STATUS</field>
         <sortOrder>Asc</sortOrder>

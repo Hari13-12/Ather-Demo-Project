@@ -9,11 +9,21 @@
         <legendPosition>Bottom</legendPosition>
         <showValues>true</showValues>
     </chart>
-    <columns>LEAD.NAME</columns>
-    <columns>LEAD.STATUS</columns>
-    <columns>LEAD.LEAD_SOURCE</columns>
-    <columns>LEAD.OWNER_FULL_NAME</columns>
-    <columns>LEAD.CREATED_DATE</columns>
+    <columns>
+        <field>LEAD.NAME</field>
+    </columns>
+    <columns>
+        <field>LEAD.STATUS</field>
+    </columns>
+    <columns>
+        <field>LEAD.LEAD_SOURCE</field>
+    </columns>
+    <columns>
+        <field>LEAD.OWNER_FULL_NAME</field>
+    </columns>
+    <columns>
+        <field>LEAD.CREATED_DATE</field>
+    </columns>
     <description
   >Placeholder for AG-215 pending detailed requirements. Current-year Lead distribution by Status.</description>
     <filter>
@@ -23,6 +33,7 @@
             <value>THIS_YEAR</value>
         </criteriaItems>
     </filter>
+    <format>Summary</format>
     <groupingsDown>
         <field>LEAD.STATUS</field>
         <sortOrder>Asc</sortOrder>
