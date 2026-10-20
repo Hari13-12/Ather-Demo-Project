@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <chart>
+        <chartType>HorizontalBar</chartType>
+        <groupingColumn>LEAD.OWNER_FULL_NAME</groupingColumn>
+        <legendPosition>Bottom</legendPosition>
+        <showValues>true</showValues>
+        <summary>RecordCount</summary>
+    </chart>
+    <columns>LEAD.NAME</columns>
+    <columns>LEAD.COMPANY</columns>
+    <columns>LEAD.OWNER_FULL_NAME</columns>
+    <columns>LEAD.LEAD_SOURCE</columns>
+    <columns>LEAD.LEAD_PRIORITY__C</columns>
+    <description
+  >High-priority Leads, grouped by Lead Owner. Priority is the value saved by the existing Lead Priority Flow.</description>
+    <groupingsDown>
+        <field>LEAD.OWNER_FULL_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>High Priority Leads by Owner</name>
+    <reportOptions>
+        <filter>
+            <column>LEAD.LEAD_PRIORITY__C</column>
+            <operator>equals</operator>
+            <value>High</value>
+        </filter>
+    </reportOptions>
+    <reportType>Leads</reportType>
+</Report>
