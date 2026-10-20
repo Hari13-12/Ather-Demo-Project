@@ -15,6 +15,7 @@
                 <componentType>Column</componentType>
                 <report
         >unfiled$public/Leads_by_Lead_Source_and_Lead_Priority</report>
+                <sortBy>ValueDescending</sortBy>
                 <title>Lead Source and Priority</title>
                 <useReportChart>true</useReportChart>
             </dashboardComponent>
@@ -27,6 +28,7 @@
             <dashboardComponent>
                 <componentType>Bar</componentType>
                 <report>unfiled$public/High_Priority_Leads_by_Owner</report>
+                <sortBy>ValueDescending</sortBy>
                 <title>High Priority Leads by Owner</title>
                 <useReportChart>true</useReportChart>
             </dashboardComponent>
@@ -39,6 +41,7 @@
             <dashboardComponent>
                 <componentType>Donut</componentType>
                 <report>unfiled$public/Leads_by_Status</report>
+                <sortBy>ValueDescending</sortBy>
                 <title>Leads by Status</title>
                 <useReportChart>true</useReportChart>
             </dashboardComponent>
@@ -51,6 +54,7 @@
             <dashboardComponent>
                 <componentType>Column</componentType>
                 <report>unfiled$public/Converted_Leads_by_Lead_Source</report>
+                <sortBy>ValueDescending</sortBy>
                 <title>Converted Leads by Source</title>
                 <useReportChart>true</useReportChart>
             </dashboardComponent>
