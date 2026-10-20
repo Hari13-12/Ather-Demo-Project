@@ -10,4 +10,24 @@
             <matchingMethod>Exact</matchingMethod>
         </matchingRuleItems>
     </matchingRules>
+    <matchingRules>
+        <fullName>Lead_Name_Company_Exact_Match</fullName>
+        <label>Lead Name and Company Exact Match</label>
+        <ruleStatus>Active</ruleStatus>
+        <matchingRuleItems>
+            <blankValueBehavior>NullNotAllowed</blankValueBehavior>
+            <fieldName>FirstName</fieldName>
+            <matchingMethod>Exact</matchingMethod>
+        </matchingRuleItems>
+        <matchingRuleItems>
+            <blankValueBehavior>NullNotAllowed</blankValueBehavior>
+            <fieldName>LastName</fieldName>
+            <matchingMethod>Exact</matchingMethod>
+        </matchingRuleItems>
+        <matchingRuleItems>
+            <blankValueBehavior>NullNotAllowed</blankValueBehavior>
+            <fieldName>Company</fieldName>
+            <matchingMethod>Exact</matchingMethod>
+        </matchingRuleItems>
+    </matchingRules>
 </MatchingRules>

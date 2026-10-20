@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <chart>
-        <chartType>Column</chartType>
+        <chartType>VerticalBar</chartType>
         <groupingColumn>LEAD.LEAD_SOURCE</groupingColumn>
         <legendPosition>Bottom</legendPosition>
         <showValues>true</showValues>
-        <summary>RecordCount</summary>
     </chart>
     <columns>LEAD.NAME</columns>
     <columns>LEAD.COMPANY</columns>
@@ -18,6 +17,7 @@
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Converted Leads by Lead Source</name>
+    <reportType>Leads</reportType>
     <reportOptions>
         <filter>
             <column>LEAD.IS_CONVERTED</column>
@@ -25,5 +25,4 @@
             <value>true</value>
         </filter>
     </reportOptions>
-    <reportType>Leads</reportType>
 </Report>

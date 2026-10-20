@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>Lead.LeadSource</members>
-        <members>Lead.Lead_Priority__c</members>
-        <name>CustomField</name>
-    </types>
-    <types>
-        <members>Lead_Set_Priority_From_Lead_Source</members>
-        <name>Flow</name>
-    </types>
-    <types>
         <members>Lead</members>
         <name>AssignmentRules</name>
     </types>
@@ -27,8 +18,13 @@
         <name>MatchingRules</name>
     </types>
     <types>
-        <members>Lead.Standard_Lead_Duplicate_Rule</members>
+        <members>Lead.Lead_Duplicate_Review</members>
         <name>DuplicateRule</name>
+    </types>
+    <types>
+        <members>LeadContactValidationRuleTest</members>
+        <members>LeadRulesTest</members>
+        <name>ApexClass</name>
     </types>
     <types>
         <members>unfiled$public.Leads_by_Lead_Source_and_Lead_Priority</members>

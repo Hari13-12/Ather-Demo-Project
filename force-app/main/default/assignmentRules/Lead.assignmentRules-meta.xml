@@ -21,23 +21,5 @@
                 <value>Partner Referral</value>
             </criteriaItems>
         </ruleEntry>
-        <ruleEntry>
-            <assignedTo>epic.9e3aebb84ffb@orgfarm.salesforce.com</assignedTo>
-            <assignedToType>User</assignedToType>
-            <criteriaItems>
-                <field>Lead.Country</field>
-                <operation>equals</operation>
-                <value>US,USA,United States,United States of America</value>
-            </criteriaItems>
-        </ruleEntry>
-        <ruleEntry>
-            <assignedTo>epic.9e3aebb84ffb@orgfarm.salesforce.com</assignedTo>
-            <assignedToType>User</assignedToType>
-            <criteriaItems>
-                <field>Lead.Country</field>
-                <operation>notEqual</operation>
-                <value>US,USA,United States,United States of America</value>
-            </criteriaItems>
-        </ruleEntry>
     </assignmentRule>
 </AssignmentRules>
