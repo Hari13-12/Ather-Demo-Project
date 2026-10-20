@@ -6,7 +6,7 @@
     <isGridLayout>true</isGridLayout>
     <dashboardGridLayout>
         <component>
-            <componentType>ReportChart</componentType>
+            <componentType>Chart</componentType>
             <report
       >unfiled$public/Leads_by_Lead_Source_and_Lead_Priority</report>
             <showTitle>true</showTitle>
@@ -19,7 +19,7 @@
     </dashboardGridLayout>
     <dashboardGridLayout>
         <component>
-            <componentType>ReportChart</componentType>
+            <componentType>Chart</componentType>
             <report>unfiled$public/High_Priority_Leads_by_Owner</report>
             <showTitle>true</showTitle>
             <title>High Priority Leads by Owner</title>
@@ -31,7 +31,7 @@
     </dashboardGridLayout>
     <dashboardGridLayout>
         <component>
-            <componentType>ReportChart</componentType>
+            <componentType>Chart</componentType>
             <report>unfiled$public/Leads_by_Status</report>
             <showTitle>true</showTitle>
             <title>Leads by Status</title>
@@ -43,7 +43,7 @@
     </dashboardGridLayout>
     <dashboardGridLayout>
         <component>
-            <componentType>ReportChart</componentType>
+            <componentType>Chart</componentType>
             <report>unfiled$public/Converted_Leads_by_Lead_Source</report>
             <showTitle>true</showTitle>
             <title>Converted Leads by Source</title>
@@ -56,6 +56,8 @@
     <dashboardGridLayout>
         <component>
             <componentType>Metric</componentType>
+            <aggregateType>RecordCount</aggregateType>
+            <metricLabel>Total High Priority Leads</metricLabel>
             <report>unfiled$public/High_Priority_Leads_by_Owner</report>
             <showTitle>true</showTitle>
             <title>Total High Priority Leads</title>
