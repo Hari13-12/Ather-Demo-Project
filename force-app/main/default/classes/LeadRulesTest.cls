@@ -4,100 +4,107 @@ private class LeadRulesTest {
 
   @IsTest
   static void routesWebAndPartnerReferralLeadsToTheirQueues() {
-    Id inboundQueueId = queueId('Inbound_Sales_Queue');
-    Id partnerQueueId = queueId('Partner_Sales_Queue');
+    System.runAs(new User(Id = UserInfo.getUserId())) {
+      Id inboundQueueId = queueId('Inbound_Sales_Queue');
+      Id partnerQueueId = queueId('Partner_Sales_Queue');
 
-    Lead webLead = newLead('Web', 'web@example.com', 'Web Company');
-    Lead partnerLead = newLead(
-      'Partner Referral',
-      'partner@example.com',
-      'Partner Company'
-    );
+      Lead webLead = newLead('Web', 'web@example.com', 'Web Company');
+      Lead partnerLead = newLead(
+        'Partner Referral',
+        'partner@example.com',
+        'Partner Company'
+      );
 
-    Database.DMLOptions options = new Database.DMLOptions();
-    options.assignmentRuleHeader.useDefaultRule = true;
-    webLead.setOptions(options);
-    partnerLead.setOptions(options);
+      Database.DMLOptions options = new Database.DMLOptions();
+      options.assignmentRuleHeader.useDefaultRule = true;
+      webLead.setOptions(options);
+      partnerLead.setOptions(options);
 
-    Test.startTest();
-    insert new List<Lead>{ webLead, partnerLead };
-    Test.stopTest();
+      Test.startTest();
+      insert new List<Lead>{ webLead, partnerLead };
+      Test.stopTest();
 
-    Map<Id, Lead> insertedLeads = new Map<Id, Lead>(
-      [
-        SELECT OwnerId
-        FROM Lead
-        WHERE Id IN :new List<Id>{ webLead.Id, partnerLead.Id }
-      ]
-    );
-    System.assertEquals(inboundQueueId, insertedLeads.get(webLead.Id).OwnerId);
-    System.assertEquals(
-      partnerQueueId,
-      insertedLeads.get(partnerLead.Id).OwnerId
-    );
+      Map<Id, Lead> insertedLeads = new Map<Id, Lead>(
+        [
+          SELECT OwnerId
+          FROM Lead
+          WHERE Id IN :new List<Id>{ webLead.Id, partnerLead.Id }
+        ]
+      );
+      System.assertEquals(
+        inboundQueueId,
+        insertedLeads.get(webLead.Id).OwnerId
+      );
+      System.assertEquals(
+        partnerQueueId,
+        insertedLeads.get(partnerLead.Id).OwnerId
+      );
+    }
   }
 
   @IsTest
   static void preservesDefaultOwnershipAndAllowsDuplicateCandidatesForReview() {
-    Lead fallbackLead = newLead(
-      'Phone Inquiry',
-      'fallback@example.com',
-      'Fallback Company'
-    );
-    insert fallbackLead;
-    System.assertEquals(UserInfo.getUserId(), fallbackLead.OwnerId);
-
-    Lead emailMatch = newLead(
-      'Other',
-      'duplicate@example.com',
-      'First Company'
-    );
-    Lead sameEmail = newLead(
-      'Other',
-      'duplicate@example.com',
-      'Second Company'
-    );
-    Lead nameCompanyMatch = newLead(
-      'Other',
-      'different@example.com',
-      'Shared Company'
-    );
-    Lead sameNameCompany = newLead(
-      'Other',
-      'another@example.com',
-      'Shared Company'
-    );
-    Lead nonMatch = newLead('Other', 'unique@example.com', 'Unique Company');
-    nameCompanyMatch.FirstName = 'Taylor';
-    sameNameCompany.FirstName = 'Taylor';
-    nonMatch.FirstName = 'Jordan';
-
-    Database.DMLOptions options = new Database.DMLOptions();
-    options.duplicateRuleHeader.allowSave = true;
-    emailMatch.setOptions(options);
-    sameEmail.setOptions(options);
-    nameCompanyMatch.setOptions(options);
-    sameNameCompany.setOptions(options);
-    nonMatch.setOptions(options);
-
-    Test.startTest();
-    Database.SaveResult[] results = Database.insert(
-      new List<Lead>{
-        emailMatch,
-        sameEmail,
-        nameCompanyMatch,
-        sameNameCompany,
-        nonMatch
-      },
-      false
-    );
-    Test.stopTest();
-
-    for (Database.SaveResult result : results) {
-      System.assert(
-        result.isSuccess(),
-        'Duplicate review rules must allow saves.'
+    System.runAs(new User(Id = UserInfo.getUserId())) {
+      Lead fallbackLead = newLead(
+        'Phone Inquiry',
+        'fallback@example.com',
+        'Fallback Company'
       );
+      insert fallbackLead;
+      System.assertEquals(UserInfo.getUserId(), fallbackLead.OwnerId);
+
+      Lead emailMatch = newLead(
+        'Other',
+        'duplicate@example.com',
+        'First Company'
+      );
+      Lead sameEmail = newLead(
+        'Other',
+        'duplicate@example.com',
+        'Second Company'
+      );
+      Lead nameCompanyMatch = newLead(
+        'Other',
+        'different@example.com',
+        'Shared Company'
+      );
+      Lead sameNameCompany = newLead(
+        'Other',
+        'another@example.com',
+        'Shared Company'
+      );
+      Lead nonMatch = newLead('Other', 'unique@example.com', 'Unique Company');
+      nameCompanyMatch.FirstName = 'Taylor';
+      sameNameCompany.FirstName = 'Taylor';
+      nonMatch.FirstName = 'Jordan';
+
+      Database.DMLOptions options = new Database.DMLOptions();
+      options.duplicateRuleHeader.allowSave = true;
+      emailMatch.setOptions(options);
+      sameEmail.setOptions(options);
+      nameCompanyMatch.setOptions(options);
+      sameNameCompany.setOptions(options);
+      nonMatch.setOptions(options);
+
+      Test.startTest();
+      Database.SaveResult[] results = Database.insert(
+        new List<Lead>{
+          emailMatch,
+          sameEmail,
+          nameCompanyMatch,
+          sameNameCompany,
+          nonMatch
+        },
+        false
+      );
+      Test.stopTest();
+
+      for (Database.SaveResult result : results) {
+        System.assert(
+          result.isSuccess(),
+          'Duplicate review rules must allow saves.'
+        );
+      }
     }
   }
 
